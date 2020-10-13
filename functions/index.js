@@ -41,3 +41,6 @@ app.get('/', (req, res) => {
 //       </body>
 //     </html>`);
 //   });
+
+// Export the Express.js app as an HTTP function:
+exports.app = functions.https.onRequest(app);
