@@ -3,6 +3,9 @@ const functions = require('firebase-functions');
 const express = require('express');
 const app = express();
 
+const cors = require('cors')({origin: true});
+app.use(cors);
+
 
 //end point to serve index
 app.get('/', (req, res) => {
@@ -29,18 +32,6 @@ app.get('/', (req, res) => {
     const hours = (date.getHours() % 12) + 1;  // London is UTC + 1hr;
     res.json({bongs: 'BONG '.repeat(hours)});
   });
-
-// exports.bigben = functions.https.onRequest((req, res) => {
-//     const hours = (new Date().getHours() % 12) + 1  // London is UTC + 1hr;
-//     res.status(200).send(`<!doctype html>
-//       <head>
-//         <title>Time</title>
-//       </head>
-//       <body>
-//         ${'BONG '.repeat(hours)}
-//       </body>
-//     </html>`);
-//   });
 
 // Export the Express.js app as an HTTP function:
 exports.app = functions.https.onRequest(app);
